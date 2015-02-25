@@ -10,7 +10,7 @@ var expect  = require('expect.js'),
     _       = require('underscore');
 
 // PATCH expect here
-expect = require('../expect.underscore.js').extend(expect, _);
+expect = require('expect.underscore.js').extend(expect, _);
 
 describe('check users for fred', function() {
 	var users = [
