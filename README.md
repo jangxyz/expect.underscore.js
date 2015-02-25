@@ -7,10 +7,10 @@ This extension inserts [underscore](http://underscorejs.org/) functions as match
 
 ```javascript
 var expect  = require('expect.js'),
-	_       = require('underscore');
+    _       = require('underscore');
 
 // PATCH expect here
-expect = require('../expect.underscore.js').extend(expect);
+expect = require('../expect.underscore.js').extend(expect, _);
 
 describe('check users for fred', function() {
 	var users = [
@@ -19,7 +19,7 @@ describe('check users for fred', function() {
 	  { 'user': 'pebbles', 'active': false }
 	];
 
-	it('using expect', function() {
+	it('using expectjs', function() {
 		// you either check with the whole object,
 		expect(users).to.contain({ 'user': 'fred', 'active': false });
 		// or split the lines
@@ -27,7 +27,7 @@ describe('check users for fred', function() {
 		expect(fred).to.be.ok();
 	});
 
-	it('using expect._', function() {
+	it('using _.find', function() {
 		// better readability
 		expect(users).to._.find({user: 'fred'});
 	});
@@ -39,4 +39,3 @@ You can use every underscore methods under the `.to._` object, and it will check
 
 
 Currently tested with [lodash](https://lodash.com/) (sorry), and only in nodejs.
-
