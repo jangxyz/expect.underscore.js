@@ -1,40 +1,37 @@
 
 # expectjs with underscore support
 
-[expectjs](https://github.com/Automattic/expect.js) is a 'Minimalistic BDD assertion toolkit'.
+[expectjs](https://github.com/Automattic/expect.js) is a 'Minimalistic BDD assertion toolkit', which makes it very easy to use, but is short in matchers that makes writing tests less jolly.
 
-It is simple to use, but is short in matchers which makes writing test codes a frown.
-
-This extension inserts an underscore matchers under the belt, so you can easily test with power of underscore in your hands.
-
+This extension inserts [underscore](http://underscorejs.org/) functions as matchers under the belt, so you can easily test with power of underscore in your hands.
 
 ```javascript
-	var expect  = require('expect.js'),
-		_       = require('underscore');
-	
-	// PATCH expect here
-	expect = require('../expect.underscore.js').extend(expect);
+var expect  = require('expect.js'),
+	_       = require('underscore');
 
-	describe('check users for fred', function() {
-		var users = [
-		  { 'user': 'barney',  'active': true },
-		  { 'user': 'fred',    'active': false },
-		  { 'user': 'pebbles', 'active': false }
-		];
+// PATCH expect here
+expect = require('../expect.underscore.js').extend(expect);
 
-		it('using expect', function() {
-			// check with whole object
-		    expect(users).to.contain({ 'user': 'fred', 'active': false });
-			// or
-			var fred = _.find(users, {user: 'fred'});
-			expect(fred).to.be.ok();
-		});
+describe('check users for fred', function() {
+	var users = [
+	  { 'user': 'barney',  'active': true },
+	  { 'user': 'fred',    'active': false },
+	  { 'user': 'pebbles', 'active': false }
+	];
 
-		it('using expect._', function() {
-			// better readability
-			expect(users).to._.find({user: 'fred'});
-		});
+	it('using expect', function() {
+		// you either check with the whole object,
+		expect(users).to.contain({ 'user': 'fred', 'active': false });
+		// or split the lines
+		var fred = _.find(users, {user: 'fred'});
+		expect(fred).to.be.ok();
 	});
+
+	it('using expect._', function() {
+		// better readability
+		expect(users).to._.find({user: 'fred'});
+	});
+});
 
 ```
 
