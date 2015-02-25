@@ -8,7 +8,7 @@ It is simple to use, but is short in matchers which makes writing test codes a f
 This extension inserts an underscore matchers under the belt, so you can easily test with power of underscore in your hands.
 
 
-```
+```javascript
 	var expect  = require('expect.js'),
 		_       = require('underscore');
 	
