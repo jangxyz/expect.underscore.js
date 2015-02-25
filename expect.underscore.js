@@ -1,14 +1,22 @@
-var expect  = require('expect.js'),
-    _       = require('lodash');
-
 /*
- *
  * Patch expect.js to extend underscore/lodash methods
  *
  */
 
 module.exports = {
-    extend: function(expect) {
+    extend: function(expect, _) {
+        if (typeof expect === 'undefined') {
+            expect = require('expectjs');
+        }
+
+        if (typeof _ === 'undefined') {
+            try {
+                _ = require('lodash');
+            } catch (err) {
+                _ = require('underscore');
+            }
+        }
+
         // patch expect
         var util = require('util'),
         i = util.inspect;
@@ -61,4 +69,3 @@ module.exports = {
         return newExpect;
     }
 };
-
