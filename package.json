@@ -1,6 +1,6 @@
 {
   "name": "expect.underscore.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "expectjs with underscore support",
   "main": "expect.underscore.js",
   "scripts": {
