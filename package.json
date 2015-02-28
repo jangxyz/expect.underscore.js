@@ -1,0 +1,26 @@
+{
+  "name": "expect.underscore.js",
+  "version": "0.0.1",
+  "description": "expectjs with underscore support",
+  "main": "expect.underscore.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jangxyz/expect.underscore.js.git"
+  },
+  "keywords": [
+    "underscore",
+    "lodash",
+    "expectjs",
+    "BDD",
+    "test"
+  ],
+  "author": "Kim, Jang-hwan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jangxyz/expect.underscore.js/issues"
+  },
+  "homepage": "https://github.com/jangxyz/expect.underscore.js"
+}
