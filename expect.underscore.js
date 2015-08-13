@@ -50,7 +50,10 @@ module.exports = {
 
             // inject underscore proxy under 'to'
             this.to._     = underscoreProxy.apply(this);
-            this.not.to._ = underscoreProxy.apply(this);
+            this.not.to._ = (function() {
+                this.flags.not = true;
+                return underscoreProxy.apply(this);
+            }).apply(this);
         };
 
         // create newExpect
@@ -69,3 +72,4 @@ module.exports = {
         return newExpect;
     }
 };
+
