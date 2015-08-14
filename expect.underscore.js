@@ -22,8 +22,9 @@ module.exports = {
         i = util.inspect;
 
         // returns proxy for asserting underscore methods
-        var underscoreProxy = function () {
+        var underscoreProxy = function (flags) {
             var self = this;
+
             var proxy = {};
             for(var name in _) {
                 var method = _[name];
@@ -35,10 +36,14 @@ module.exports = {
                         var _args = Array.prototype.slice.apply(arguments),
                             args = [self.obj].concat(_args);
 
-                        self.assert(
-                            !!method.apply(_, args)
-                          , function(){ return 'expected ' + i(self.obj) + ' to ' + name + ' with args: ' + i(_args) }
-                          , function(){ return 'expected ' + i(self.obj) + ' to not ' + name + ' with args: ' + i(_args) });
+                        var truth = !!method.apply(_, args),
+                            msg   = function(){ return 'expected ' + i(self.obj) + ' to ' + name + ' with args: ' + i(_args) },
+                            error = function(){ return 'expected ' + i(self.obj) + ' to not ' + name + ' with args: ' + i(_args) };
+                        if (!flags.not) {
+                            self.assert(truth, msg, error);
+                        } else {
+                            self.assert(!truth, error, msg);
+                        }
                     };
                 })(name, method)
             }
@@ -49,13 +54,9 @@ module.exports = {
             _Assertion.apply(this, arguments);
 
             // inject underscore proxy under 'to'
-            this.to._     = underscoreProxy.apply(this);
+            this.to._     = underscoreProxy.call(this, {});
             this.not.to._ = (function() {
-                return function() {
-                    this.flags = {};
-                    this.flags.not = true;
-                    return underscoreProxy.apply(this);
-                };
+                return underscoreProxy.call(this, {not: true});
             }).apply(this);
         };
 

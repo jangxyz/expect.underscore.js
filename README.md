@@ -18,7 +18,7 @@ This extension inserts [underscore](http://underscorejs.org/) functions as match
 ### Node
 
 ```
-$ npm install expect.unerscore.js
+$ npm install expect.underscore.js
 ```
 
 
@@ -50,6 +50,15 @@ describe('check users for fred', function() {
     it('using _.find', function() {
         // better readability
         expect(users).to._.find({user: 'fred'});
+    });
+
+
+    describe('.not.to', function() {
+        it('using _.find', function() {
+            expect(users).not.to._.find({
+                active: undefined
+            });
+        });
     });
 });
 
