@@ -33,6 +33,11 @@ var expect  = require('expect.js'),
 expect = require('expect.underscore.js').extend(expect, _);
 
 describe('check users for fred', function() {
+    var userNames = [
+        'barney',  
+        'fred',
+        'pebbles',
+    ];
     var users = [
       { 'user': 'barney',  'active': true },
       { 'user': 'fred',    'active': false },
@@ -41,7 +46,8 @@ describe('check users for fred', function() {
 
     it('using expectjs', function() {
         // you either check with the whole object,
-        expect(users).to.contain({ 'user': 'fred', 'active': false });
+        expect(userNames).to.contain('fred');
+
         // or split the lines
         var fred = _.find(users, {user: 'fred'});
         expect(fred).to.be.ok();
