@@ -6,7 +6,7 @@
 module.exports = {
     extend: function(expect, _) {
         if (typeof expect === 'undefined') {
-            expect = require('expectjs');
+            expect = require('expect.js');
         }
 
         if (typeof _ === 'undefined') {
